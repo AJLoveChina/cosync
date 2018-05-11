@@ -25,6 +25,15 @@ ${package.name} run
   var unzipPath = path.resolve(__dirname, "unzip", local_path_md5)
 
 
+  if (cos.isValidLocalPath(local_path)) {
+    console.log(`
+    您命令行当前所在的目录包含非ascii字符, 主要是目前不能处理路径中有中文字符的情况.
+    解决办法 : 将需要同步的文件或者文件夹转移到英文目录下
+    PPS : 您上传的目录中允许中文字符
+    `);
+    return;
+  }
+
   fs.createReadStream(zipFilePath).pipe(unzip.Extract({ path: unzipPath }))
     .on("finish", async () => {
       let answers = await cos.getCOSConfigAndSave(local_path_md5);

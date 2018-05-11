@@ -6,6 +6,9 @@ const child_process = require('child_process');
 const data = require('./data/data.js')
 
 module.exports = {
+  isValidLocalPath(str) {
+    return !/^[\x00-\x7F]*$/.test(str);
+  },
   sync(unzipPath) {
     var filepath = path.resolve(unzipPath, 'cos_sync_tools_v5-master', 'run.bat')
     console.log(filepath);
@@ -113,7 +116,7 @@ enable_https=${answers.enable_https}`)
         resolve(JSON.parse(fs.readFileSync(jsonPath)))
       })
     }
-    let list = data.choices;
+    let list = data.getChoices();
 
     return inquirer.prompt(list).then((answers) => {
       answers.local_path = process.cwd();
@@ -132,7 +135,7 @@ enable_https=${answers.enable_https}`)
   async getCOSSpecificConfigAndSave(local_path_md5, kList) {
     let originalconfig = await this.getCOSConfig(local_path_md5);
 
-    let choices = data.choices.filter(item => kList.indexOf(item.name) !== -1);
+    let choices = data.getChoices().filter(item => kList.indexOf(item.name) !== -1);
     let answers = await inquirer.prompt(choices);
 
     let finalConfig = Object.assign(originalconfig, answers)
@@ -144,7 +147,10 @@ enable_https=${answers.enable_https}`)
 
   saveCOSConfig(local_path_md5, answers) {
     var jsonPath = path.resolve(__dirname, "./config", local_path_md5 + ".json");
+    var lastConfigFile = path.resolve(__dirname, "./config", "lastConfig.json");
     fs.ensureFileSync(jsonPath)
-    fs.writeFile(jsonPath, JSON.stringify(answers, null, 2));
+    fs.ensureFileSync(lastConfigFile)
+    fs.writeFileSync(jsonPath, JSON.stringify(answers, null, 2));
+    fs.writeFileSync(lastConfigFile, JSON.stringify(answers, null, 2));
   }
 }

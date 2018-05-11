@@ -1,4 +1,25 @@
+const path = require("path")
+const fs = require("fs-extra")
+
 module.exports = {
+  getChoices() {
+    let configFilePath = path.resolve(__dirname, "../config/lastConfig.json");
+    console.log(configFilePath);
+    let map = {};
+    if (fs.existsSync(configFilePath)) {
+      try {
+        map = JSON.parse(fs.readFileSync(configFilePath));
+      } catch(ex) {}
+    }
+
+    return this.choices.map(item => {
+      if (map[item.name] !== undefined) {
+        item.default = map[item.name];
+      }
+      return item;
+    })
+
+  },
   choices : [
     {
       type : 'input',
@@ -26,7 +47,7 @@ module.exports = {
       name : "storage_class"
     },{
       type : 'input',
-      message : "cos路径",
+      message : "cos路径, 请以斜线 / 开始, 如果是上传到bucket根路径请设置为 / ",
       name : "cos_path"
     },{
       type : 'input',
