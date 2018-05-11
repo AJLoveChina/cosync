@@ -1,0 +1,21 @@
+{
+  "name": "cosync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "cosync": "./bin/bin.js"
+  },
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "inquirer": "^5.2.0",
+    "md5": "^2.2.1",
+    "unzip": "^0.1.11"
+  }
+}
