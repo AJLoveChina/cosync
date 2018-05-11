@@ -49,7 +49,7 @@ ${package.name} run
       cos.writeConfigini(unzipPath, answers);
       cos.writeStartBat(unzipPath);
 
-      cos.sync(unzipPath);
+      await cos.sync(unzipPath);
     })
 }
 

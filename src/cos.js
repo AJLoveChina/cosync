@@ -15,13 +15,14 @@ module.exports = {
 
 
     return new Promise((resolve, reject) => {
-      child_process.exec(filepath, function(err, stdout, stderr) {
+      child_process.execFile(filepath, {maxBuffer: 1024 * 500}, function(err, stdout, stderr) {
         if (err) {
           console.error(err);
-          return;
+          resolve(err);
+        } else {
+          console.log(stdout);
+          resolve(stdout);
         }
-
-        console.log(stdout);
       });
     })
   },
