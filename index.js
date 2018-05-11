@@ -13,6 +13,7 @@ module.exports = function (directive) {
 使用指南 : 
 将命令行切换到需要上传到COS的文件夹路径, 然后执行
 ${package.name} run
+当前版本 ${package.version}
 ***********************************************    
     `);
     return;
