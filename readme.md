@@ -4,6 +4,10 @@
 
 基于官方工具二次开发, 更加方便, 开箱即用!所有配置项都在运行时提示你如何配置, 并且会记录你的配置.
 
+## 系统要求
+* nodejs
+* JDK (并且已将java.exe添加在系统PATH, 你在命令行执行java命令有结果就说明符合要求)
+
 ## 安装
 
 ```bash
@@ -25,7 +29,9 @@ $ cosync run
 ## 示例
 第一次执行\
 ![ScreenShot](https://raw.github.com/AJLoveChina/cosync/master/test/cosync.gif?t=2018年5月11日)
+
 到腾讯云查看执行结果\
 ![ScreenShot](https://raw.github.com/AJLoveChina/cosync/master/test/result.gif?t=2018年5月11日)
+
 重复执行能看到已经保存的配置, 不需要重新填写配置, 但是你仍然可以修改某个配置项\
 ![ScreenShot](https://raw.github.com/AJLoveChina/cosync/master/test/cosync_reexe.gif?t=2018年5月11日)
