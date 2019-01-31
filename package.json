@@ -1,13 +1,13 @@
 {
   "name": "cosync",
-  "version": "1.0.7",
-  "description": "快速查询一个开源库在bootcdn的URL地址",
+  "version": "1.0.8",
+  "description": ":wrench:快速上传本地文件夹到腾讯云COS. 开箱即用!",
   "main": "index.js",
   "scripts": {
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
     "cosync": "./bin/bin.js"
   },
